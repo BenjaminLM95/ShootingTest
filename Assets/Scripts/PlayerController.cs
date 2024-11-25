@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot() 
     {
-        GameObject tempBullet = Instantiate(bullet, directionToTarget, transform.rotation) as GameObject;        
+        GameObject tempBullet = Instantiate(bullet, transform.position + directionToTarget, transform.rotation) as GameObject;        
         Destroy(tempBullet, 5f);
     }
 }
