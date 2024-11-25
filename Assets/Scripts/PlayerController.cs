@@ -11,14 +11,16 @@ public class PlayerController : MonoBehaviour
     public GameObject bullet; 
     private Vector3 aimPosition;
     private Vector3 directionToTarget = new Vector3();
-    private Vector3 adjustPos = new Vector3(0.0f, 0, 0); 
+    private Vector3 adjustPos = new Vector3(0.0f, 0, 0);
+    public int shots; 
     // Start is called before the first frame update
     void Start()
     {
         aimPosition = transform.position - aimPoint.transform.position;
         Debug.Log(aimPosition.magnitude);
         directionToTarget = (aimPoint.transform.position - this.transform.position).normalized;
-        Debug.Log(directionToTarget.magnitude); 
+        Debug.Log(directionToTarget.magnitude);
+        shots = 7; 
 
     }
 
@@ -27,9 +29,11 @@ public class PlayerController : MonoBehaviour
     {
         directionToTarget = (aimPoint.transform.position - this.transform.position).normalized;
 
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.Space) && shots > 0) 
         {
-            Shoot(); 
+            
+            Shoot();
+            shots--; 
         }
 
         
