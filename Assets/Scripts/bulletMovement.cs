@@ -34,5 +34,16 @@ public class bulletMovement : MonoBehaviour
             Debug.Log("Hit");            
             other.gameObject.SetActive(false); 
         }
+
+        if(other.gameObject.CompareTag("Mirror"))
+        {
+            pos = Vector3.Reflect(pos, Vector3.left);            
+        }
+
+        if (other.gameObject.CompareTag("Block")) 
+        {
+            this.gameObject.SetActive(false);   
+        }
+
     }
 }

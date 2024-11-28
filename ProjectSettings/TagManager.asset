@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Balloon
+  - Mirror
+  - Block
   layers:
   - Default
   - TransparentFX
