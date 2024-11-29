@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,21 +10,38 @@ public class bulletMovement : MonoBehaviour
     float bulletSpeed = 5.0f;
     public GameObject someOtherGameObject;
     public GameObject levelInfo;
-    public LevelManagment lM; 
+    public LevelManagment lM;
+    public RaycastHit hit;
+   
     // Start is called before the first frame update
     void Start()
     {
         levelInfo = GameObject.Find("LevelManagment");
         lM = levelInfo.GetComponent<LevelManagment>(); 
         someOtherGameObject = GameObject.Find("Aim shot");
-        pos = ((transform.position - someOtherGameObject.transform.position) * -1).normalized;        
-        
+        pos = ((transform.position - someOtherGameObject.transform.position) * -1).normalized;
+         
+
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position += pos * bulletSpeed * Time.deltaTime;
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, pos); 
+        if(ray.collider != null) 
+        {
+            if (ray.collider.CompareTag("Mirror")) 
+            {
+                pos = Vector3.Reflect(pos, Vector3.left);
+                Debug.Log("reflect"); 
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -35,10 +53,10 @@ public class bulletMovement : MonoBehaviour
             other.gameObject.SetActive(false); 
         }
 
-        if(other.gameObject.CompareTag("Mirror"))
+        /*if(other.gameObject.CompareTag("Mirror"))
         {
             pos = Vector3.Reflect(pos, Vector3.left);            
-        }
+        }*/
 
         if (other.gameObject.CompareTag("Block")) 
         {
