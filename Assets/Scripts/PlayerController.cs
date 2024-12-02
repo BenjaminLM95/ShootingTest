@@ -12,10 +12,13 @@ public class PlayerController : MonoBehaviour
     private Vector3 aimPosition;
     private Vector3 directionToTarget = new Vector3();
     private Vector3 adjustPos = new Vector3(0.0f, 0, 0);
-    public int shots; 
+    public int shots;
+    public LevelManagment lm;
+    public GameObject txtInfo; 
     // Start is called before the first frame update
     void Start()
     {
+        lm = txtInfo.GetComponent<LevelManagment>();
         aimPosition = transform.position - aimPoint.transform.position;
         Debug.Log(aimPosition.magnitude);
         directionToTarget = (aimPoint.transform.position - this.transform.position).normalized;
@@ -31,9 +34,10 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && shots > 0) 
         {
-            
+            shots--;
+            lm.ShowUD(); 
             Shoot();
-            shots--; 
+            
         }
 
         
@@ -51,4 +55,6 @@ public class PlayerController : MonoBehaviour
         GameObject tempBullet = Instantiate(bullet, transform.position + directionToTarget, transform.rotation) as GameObject;        
         Destroy(tempBullet, 5f);
     }
+
+
 }

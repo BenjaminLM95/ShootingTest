@@ -27,8 +27,11 @@ public class bulletMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += pos * bulletSpeed * Time.deltaTime;
-        RaycastHit2D ray = Physics2D.Raycast(transform.position, pos); 
+        transform.position += pos * bulletSpeed * Time.deltaTime;        
+
+       
+
+        /*
         if(ray.collider != null) 
         {
             if (ray.collider.CompareTag("Mirror")) 
@@ -36,7 +39,7 @@ public class bulletMovement : MonoBehaviour
                 pos = Vector3.Reflect(pos, Vector3.left);
                 Debug.Log("reflect"); 
             }
-        }
+        } */
     }
 
     private void FixedUpdate()
@@ -53,10 +56,15 @@ public class bulletMovement : MonoBehaviour
             other.gameObject.SetActive(false); 
         }
 
-        /*if(other.gameObject.CompareTag("Mirror"))
+        if(other.gameObject.CompareTag("Mirror"))
         {
             pos = Vector3.Reflect(pos, Vector3.left);            
-        }*/
+        }
+
+        if (other.gameObject.CompareTag("MirrorVertical"))
+        {
+            pos = Vector3.Reflect(pos, Vector3.up);
+        }
 
         if (other.gameObject.CompareTag("Block")) 
         {
