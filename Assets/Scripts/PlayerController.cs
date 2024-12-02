@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 aimPosition;
     private Vector3 directionToTarget = new Vector3();
     private Vector3 adjustPos = new Vector3(0.0f, 0, 0);
+    public int mxShots; 
     public int shots;
     public LevelManagment lm;
     public GameObject txtInfo; 
@@ -23,8 +24,8 @@ public class PlayerController : MonoBehaviour
         Debug.Log(aimPosition.magnitude);
         directionToTarget = (aimPoint.transform.position - this.transform.position).normalized;
         Debug.Log(directionToTarget.magnitude);
-        shots = 7; 
-
+        mxShots = 7;
+        shots = mxShots; 
     }
 
     // Update is called once per frame
@@ -32,10 +33,10 @@ public class PlayerController : MonoBehaviour
     {
         directionToTarget = (aimPoint.transform.position - this.transform.position).normalized;
 
-        if (Input.GetKeyDown(KeyCode.Space) && shots > 0) 
+        if (Input.GetKeyDown(KeyCode.Space) && shots > 0 && !lm.win) 
         {
             shots--;
-            lm.ShowUD(); 
+            lm.updatePoints(); 
             Shoot();
             
         }
@@ -55,6 +56,8 @@ public class PlayerController : MonoBehaviour
         GameObject tempBullet = Instantiate(bullet, transform.position + directionToTarget, transform.rotation) as GameObject;        
         Destroy(tempBullet, 5f);
     }
+
+    
 
 
 }

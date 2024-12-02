@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,7 +12,9 @@ public class bulletMovement : MonoBehaviour
     public GameObject someOtherGameObject;
     public GameObject levelInfo;
     public LevelManagment lM;
-    public RaycastHit hit;
+    public RaycastHit2D hit;
+    public LayerMask obstacles;
+    //public Vector3 gravity = new Vector3(0, -9.81f, 0); 
    
     // Start is called before the first frame update
     void Start()
@@ -27,19 +30,15 @@ public class bulletMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += pos * bulletSpeed * Time.deltaTime;        
+        transform.position += pos * bulletSpeed * Time.deltaTime;
 
-       
 
-        /*
-        if(ray.collider != null) 
+        hit = Physics2D.Raycast(transform.position, pos, 0.4f, obstacles);
+        if (hit)
         {
-            if (ray.collider.CompareTag("Mirror")) 
-            {
-                pos = Vector3.Reflect(pos, Vector3.left);
-                Debug.Log("reflect"); 
-            }
-        } */
+            pos = Vector3.Reflect(pos, hit.normal);
+            Debug.Log("reflect"); 
+        } 
     }
 
     private void FixedUpdate()
@@ -54,22 +53,13 @@ public class bulletMovement : MonoBehaviour
             lM.CountScore();  
             Debug.Log("Hit");            
             other.gameObject.SetActive(false); 
-        }
-
-        if(other.gameObject.CompareTag("Mirror"))
-        {
-            pos = Vector3.Reflect(pos, Vector3.left);            
-        }
-
-        if (other.gameObject.CompareTag("MirrorVertical"))
-        {
-            pos = Vector3.Reflect(pos, Vector3.up);
-        }
+        }        
 
         if (other.gameObject.CompareTag("Block")) 
         {
             this.gameObject.SetActive(false);   
         }
+               
 
     }
 }

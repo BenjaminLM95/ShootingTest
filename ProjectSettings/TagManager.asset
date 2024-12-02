@@ -8,6 +8,8 @@ TagManager:
   - Mirror
   - Block
   - MirrorVertical
+  - Shot4Ballon
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Obstacles
   - 
   - 
   - 
