@@ -15,15 +15,16 @@ public class bulletMovement : MonoBehaviour
     public RaycastHit2D hit;
     public LayerMask obstacles;
     //public Vector3 gravity = new Vector3(0, -9.81f, 0); 
-   
+
     // Start is called before the first frame update
     void Start()
     {
         levelInfo = GameObject.Find("LevelManagment");
-        lM = levelInfo.GetComponent<LevelManagment>(); 
+        lM = levelInfo.GetComponent<LevelManagment>();
         someOtherGameObject = GameObject.Find("Aim shot");
         pos = ((transform.position - someOtherGameObject.transform.position) * -1).normalized;
-         
+        Debug.Log(transform.position + " initial XYZ");
+        Debug.Log(someOtherGameObject.transform.position + "Aim shot position" );  
 
     }
 
@@ -39,13 +40,7 @@ public class bulletMovement : MonoBehaviour
             pos = Vector3.Reflect(pos, hit.normal);
             Debug.Log("reflect"); 
         } 
-    }
-
-    private void FixedUpdate()
-    {
-        
-    }
-
+    }    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Balloon")) 

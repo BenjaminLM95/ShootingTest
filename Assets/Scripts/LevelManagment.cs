@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelManagment : MonoBehaviour
 {
     public int Points = 0;
-    public int nBallons = 0; 
+    public int nMonsters = 0; 
     //public GameObject levelObj;
     public PlayerController pC;
     public GameObject player;
@@ -26,7 +26,7 @@ public class LevelManagment : MonoBehaviour
     // Update is called once per frame    
     private void Update()
     {
-        if (nBallons == numberOfBallons)
+        if (nMonsters == numberOfBallons)
         {
             win = true;
             Debug.Log("You win"); 
@@ -35,19 +35,19 @@ public class LevelManagment : MonoBehaviour
 
     public void CountScore() 
     {
-        nBallons++;
+        nMonsters++;
         updatePoints(); 
         Debug.Log(Points);        
     }
 
     public void ShowUD()
     {
-        scoreTx.text = "Shots: " + pC.shots + "Popped Ballons: " + nBallons + " Score: " + Points;
+        scoreTx.text = "Shots: " + pC.shots + "Monsters Defeated: " + nMonsters + " Score: " + Points;
     }
 
     public void updatePoints() 
     {
-        Points = nBallons * 10 + ((pC.shots - pC.mxShots));
+        Points = nMonsters * 10 + ((pC.shots - pC.mxShots) * 2);
         ShowUD(); 
     }
 

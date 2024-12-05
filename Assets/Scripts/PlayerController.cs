@@ -54,7 +54,8 @@ public class PlayerController : MonoBehaviour
     private void Shoot() 
     {
         GameObject tempBullet = Instantiate(bullet, transform.position + directionToTarget, transform.rotation) as GameObject;        
-        Destroy(tempBullet, 5f);
+        Destroy(tempBullet, 8f);
+        Debug.Log(directionToTarget + " Direction to Target"); 
     }
 
     
