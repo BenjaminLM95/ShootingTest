@@ -314,8 +314,9 @@ MonoBehaviour:
   pC: {fileID: 0}
   player: {fileID: 1491293531}
   scoreTx: {fileID: 2033733036}
-  numberOfBallons: 9
+  numberOfMonsters: 6
   win: 0
+  nextLevel: Menu
 --- !u!4 &385531417
 Transform:
   m_ObjectHideFlags: 0
@@ -1375,7 +1376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6819444748706614021, guid: 78df36df4f613544ab25579c4f76c808, type: 3}
       propertyPath: mxShots
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6819444748706614021, guid: 78df36df4f613544ab25579c4f76c808, type: 3}
       propertyPath: txtInfo

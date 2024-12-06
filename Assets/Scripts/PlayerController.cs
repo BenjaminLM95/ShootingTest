@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.XR;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,8 +19,7 @@ public class PlayerController : MonoBehaviour
         aimPosition = transform.position - aimPoint.transform.position;
         Debug.Log(aimPosition.magnitude);
         directionToTarget = (aimPoint.transform.position - this.transform.position).normalized;
-        Debug.Log(directionToTarget.magnitude);
-        mxShots = 7;
+        Debug.Log(directionToTarget.magnitude);        
         shots = mxShots; 
     }
 
@@ -43,13 +38,13 @@ public class PlayerController : MonoBehaviour
 
         
     }
-
+    /*
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position + adjustPos, transform.position + directionToTarget);
         directionToTarget = (aimPoint.transform.position - this.transform.position).normalized;
-    }
+    }  */
 
     private void Shoot() 
     {
