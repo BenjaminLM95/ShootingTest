@@ -12,7 +12,8 @@ public class LevelManagment : MonoBehaviour
     public TextMeshProUGUI scoreTx;
     public int numberOfMonsters;
     public bool win = false;
-    public string nextLevel; 
+    public string nextLevel;
+    public TextMeshProUGUI WinLoseTx;
 
     // Start is called before the first frame update
     void Start()
@@ -32,8 +33,20 @@ public class LevelManagment : MonoBehaviour
             Debug.Log("You win"); 
         }
 
-        if (win)
-            SceneManager.LoadScene(nextLevel);
+        if (win) 
+        {
+            WinLoseTx.gameObject.SetActive(true);
+            WinLoseTx.text = "You Win!!!"; 
+            Invoke("levelComplete", 2f); 
+
+        }
+            
+
+        if(pC.shots == 0 && nMonsters < numberOfMonsters) 
+        {
+            WinLoseTx.gameObject.SetActive(true);
+            WinLoseTx.text = "You lost! Press 'M' to return to the menu or press 'R' to restart the level"; 
+        }
     }
 
     public void CountScore() 
@@ -55,6 +68,11 @@ public class LevelManagment : MonoBehaviour
             Points = 0; 
 
         ShowUD(); 
+    }
+
+    public void levelComplete() 
+    {
+        SceneManager.LoadScene(nextLevel);
     }
 
 }
