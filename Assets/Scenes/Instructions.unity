@@ -789,7 +789,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Move the cursor to aim and shoot with Space. You have to shoot the monsters
+  m_text: 'Move the cursor to aim and shoot with Space. You have to shoot the monsters.
+
+    In
+    the levels, you can return to the menu pressing ''M'' and you can restart the
+    current level pressing ''R'''
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

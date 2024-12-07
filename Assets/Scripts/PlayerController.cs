@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerController : MonoBehaviour
@@ -11,10 +12,14 @@ public class PlayerController : MonoBehaviour
     public int mxShots; 
     public int shots;
     public LevelManagment lm;
-    public GameObject txtInfo; 
+    public GameObject txtInfo;
+    private string sceneName;
+    private Scene m_Scene;
     // Start is called before the first frame update
     void Start()
     {
+        m_Scene = SceneManager.GetActiveScene();
+        sceneName = m_Scene.name;
         lm = txtInfo.GetComponent<LevelManagment>();
         aimPosition = transform.position - aimPoint.transform.position;
         Debug.Log(aimPosition.magnitude);
@@ -36,7 +41,12 @@ public class PlayerController : MonoBehaviour
             
         }
 
-        
+        if(Input.GetKeyDown(KeyCode.M))
+            SceneManager.LoadScene("Menu");
+
+        if(Input.GetKeyDown(KeyCode.R))
+            SceneManager.LoadScene(sceneName);
+
     }
     /*
     private void OnDrawGizmos()
